@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Manhwa Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Comixstyle.css">
+  <style>
+    .checkout-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    .checkout-form-section {
+      background: #1a1a1a;
+      padding: 40px;
+      border-radius: 10px;
+    }
+
+    .form-section-title {
+      font-size: 20px;
+      color: #00ffae;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #00ffae;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group label {
+      display: block;
+      color: #cfcfcf;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #0f0f0f;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #00ffae;
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 255, 174, 0.2);
+    }
+
+    .form-group input::placeholder {
+      color: #666;
+    }
+
+    .order-summary {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .order-summary h3 {
+      color: #00ffae;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #333;
+      font-size: 14px;
+    }
+
+    .order-item.total {
+      border-bottom: 2px solid #00ffae;
+      margin-top: 10px;
+      padding-top: 15px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #00ffae;
+    }
+
+    .order-item span:first-child {
+      color: #cfcfcf;
+    }
+
+    .order-item span:last-child {
+      color: #00ffae;
+      font-weight: 600;
+    }
+
+    .payment-methods {
+      margin-top: 30px;
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      background: #0f0f0f;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .payment-option:hover {
+      border-color: #00ffae;
+      background: #1a1a1a;
+    }
+
+    .payment-option input[type="radio"] {
+      margin-right: 15px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: #00ffae;
+    }
+
+    .payment-option label {
+      margin: 0;
+      cursor: pointer;
+      flex: 1;
+      color: white;
+    }
+
+    .place-order-btn {
+      width: 100%;
+      padding: 15px;
+      background: #00ffae;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+
+    .place-order-btn:hover {
+      transform: scale(1.02);
+    }
+
+    .place-order-btn:disabled {
+      background: #666;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background: #444;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #555;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      margin: 40px auto;
+      max-width: 600px;
+    }
+
+    .success-message h2 {
+      color: #00ffae;
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+
+    .success-message p {
+      color: #cfcfcf;
+      margin-bottom: 10px;
+    }
+
+    .order-id {
+      color: #00ffae;
+      font-weight: 700;
+      font-size: 18px;
+      margin: 20px 0;
+    }
+
+    .continue-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: #00ffae;
+      color: black;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .checkout-container {
+        grid-template-columns: 1fr;
+      }
+
+      .order-summary {
+        position: static;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">MANHWA HUB</div>
+  <ul id="navLinks">
+    <li id="adminLink" style="display:none;"><a href="admin.html">Admin Dashboard</a></li>
+    <li><a href="Comix.html">Store</a></li>
+    <li><a href="Library.html">Library</a></li>
+    <li><a href="genre.html">Genres</a></li>
+    <li><a href="popular.html">Popular</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="cart.html" class="cart-icon">🛒 Cart <span id="cartCount">0</span></a></li>
+    <li><a href="#" id="loginBtn">Login</a></li>
+    <li><a href="#" id="signupBtn">Sign Up</a></li>
+  </ul>
+  <div id="userDisplay" style="display:none; font-weight:600; color:#00ffae;"></div>
+  <a href="account.html" id="accountIcon" style="display:none; font-size: 24px; margin-left: 15px; margin-right: 15px; text-decoration: none;">👤</a>
+  <button id="logoutBtn" style="display:none; margin-left:15px; padding:8px 14px; border:none; border-radius:6px; background:#00ffae; color:black; font-weight:600; cursor:pointer;">Logout</button>
+</nav>
+
+<!-- PAGE TITLE -->
+<section class="page-title" style="background: linear-gradient(to right, rgba(15,15,15,0.7), rgba(24,24,24,0.7)), url('https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=1200'); background-size: cover; background-position: center; padding: 60px; text-align: center;">
+  <h1 style="font-size: 48px; color: #00ffae;">Checkout</h1>
+</section>
+
+<!-- CHECKOUT CONTAINER -->
+<div style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+  <a href="cart.html" class="back-btn">← Back to Cart</a>
+</div>
+
+<div class="checkout-container" id="checkoutContainer">
+  <!-- CHECKOUT FORM -->
+  <div class="checkout-form-section">
+    <form id="checkoutForm">
+      <!-- BILLING INFORMATION -->
+      <div class="form-section-title">Billing Information</div>
+      
+      <div class="form-row full">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="fullName" placeholder="John Doe" required>
+        </div>
+      </div>
+
+      <div class="form-row full">
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" id="email" placeholder="john@example.com" required>
+        </div>
+      </div>
+
+      <div class="form-row full">
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="phone" placeholder="+63 912 345 6789" required>
+        </div>
+      </div>
+
+      <div class="form-row full">
+        <div class="form-group">
+          <label>Street Address *</label>
+          <input type="text" id="address" placeholder="123 Main Street" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>City *</label>
+          <input type="text" id="city" placeholder="Manila" required>
+        </div>
+        <div class="form-group">
+          <label>Postal Code *</label>
+          <input type="text" id="postalCode" placeholder="1000" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>State/Province *</label>
+          <input type="text" id="state" placeholder="Metro Manila" required>
+        </div>
+        <div class="form-group">
+          <label>Country *</label>
+          <input type="text" id="country" placeholder="Philippines" required>
+        </div>
+      </div>
+
+      <!-- PAYMENT INFORMATION -->
+      <div class="form-section-title" style="margin-top: 40px;">Payment Method</div>
+      
+      <div class="payment-methods">
+        <div class="payment-option">
+          <input type="radio" id="creditCard" name="payment" value="Credit Card" checked>
+          <label for="creditCard">💳 Credit Card</label>
+        </div>
+
+        <div class="payment-option">
+          <input type="radio" id="debitCard" name="payment" value="Debit Card">
+          <label for="debitCard">💳 Debit Card</label>
+        </div>
+
+        <div class="payment-option">
+          <input type="radio" id="gcash" name="payment" value="GCash">
+          <label for="gcash">📱 GCash</label>
+        </div>
+
+        <div class="payment-option">
+          <input type="radio" id="bankTransfer" name="payment" value="Bank Transfer">
+          <label for="bankTransfer">🏦 Bank Transfer</label>
+        </div>
+
+        <div class="payment-option">
+          <input type="radio" id="paypal" name="payment" value="PayPal">
+          <label for="paypal">🌐 PayPal</label>
+        </div>
+      </div>
+
+      <!-- CARD DETAILS (hidden by default) -->
+      <div id="cardDetailsDiv" style="display: none; margin-top: 30px;">
+        <div class="form-section-title">Card Details</div>
+
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Cardholder Name *</label>
+            <input type="text" id="cardholderName" placeholder="Name on Card">
+          </div>
+        </div>
+
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Card Number *</label>
+            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Expiry Date *</label>
+            <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+          </div>
+          <div class="form-group">
+            <label>CVV *</label>
+            <input type="text" id="cvv" placeholder="123" maxlength="4">
+          </div>
+        </div>
+      </div>
+
+      <!-- TERMS & CONDITIONS -->
+      <div class="form-group" style="margin-top: 30px;">
+        <input type="checkbox" id="terms" required style="width: auto; margin-right: 10px;">
+        <label for="terms" style="display: inline; margin: 0;">I agree to the terms and conditions</label>
+      </div>
+
+      <!-- SUBMIT BUTTON -->
+      <button type="submit" class="place-order-btn">Place Order</button>
+    </form>
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div class="order-summary">
+    <h3>Order Summary</h3>
+    <div id="orderItems"></div>
+    <div class="order-item">
+      <span>Subtotal:</span>
+      <span id="summarySubtotal">$0.00</span>
+    </div>
+    <div class="order-item">
+      <span>Shipping:</span>
+      <span id="summarySipping">$5.00</span>
+    </div>
+    <div class="order-item">
+      <span>Tax (10%):</span>
+      <span id="summaryTax">$0.00</span>
+    </div>
+    <div class="order-item total">
+      <span>Total:</span>
+      <span id="summaryTotal">$0.00</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS MESSAGE -->
+<div id="successMessage" class="success-message">
+  <h2>✓ Order Confirmed!</h2>
+  <p>Thank you for your purchase!</p>
+  <div class="order-id">Order ID: <span id="orderId"></span></div>
+  <p>A confirmation email has been sent to your email address.</p>
+  <p style="color: #888; font-size: 12px; margin-top: 15px;">Expected delivery: 3-5 business days</p>
+  <a href="Comix.html" class="continue-link">Continue Shopping</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Comix | Checkout
+</footer>
+
+<script src="cart.js"></script>
+<script src="script.js"></script>
+<script src="transaction.js"></script>
+</body>
+</html>

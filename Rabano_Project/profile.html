@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - Manhwa Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Comixstyle.css">
+  <style>
+    .profile-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    .profile-header {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+    
+    .profile-picture-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    #profilePictureDisplay {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00ffae;
+      background: #333;
+    }
+    
+    .upload-picture-btn {
+      padding: 10px 20px;
+      background: #00ffae;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .upload-picture-btn:hover {
+      background: #00ddaa;
+    }
+    
+    #profilePictureInput {
+      display: none;
+    }
+    
+    .profile-details {
+      flex: 1;
+    }
+    
+    .profile-details h1 {
+      color: #00ffae;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #333;
+      color: #ccc;
+    }
+    
+    .detail-row strong {
+      color: #00ffae;
+    }
+    
+    .section-title {
+      color: #00ffae;
+      font-size: 22px;
+      margin: 40px 0 20px 0;
+      font-weight: 600;
+    }
+    
+    .order-history {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #00ffae;
+    }
+    
+    .order-card {
+      background: #2a2a2a;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #333;
+    }
+    
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #444;
+    }
+    
+    .order-id {
+      color: #00ffae;
+      font-weight: 600;
+    }
+    
+    .order-date {
+      color: #888;
+      font-size: 14px;
+    }
+    
+    .order-status {
+      padding: 6px 12px;
+      background: #00ffae;
+      color: black;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    
+    .order-items {
+      margin-bottom: 15px;
+    }
+    
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      color: #ccc;
+      font-size: 14px;
+    }
+    
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 15px;
+      border-top: 1px solid #444;
+      color: #00ffae;
+      font-weight: 600;
+    }
+    
+    .empty-message {
+      text-align: center;
+      padding: 40px 20px;
+      color: #888;
+    }
+    
+    .back-btn {
+      padding: 10px 20px;
+      background: #444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    
+    .back-btn:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">MANHWA HUB</div>
+    <ul id="navLinks">
+
+      <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+      <li id="adminLink" style="display:none;"><a href="admin.html">Admin Dashboard</a></li>
+      <li><a href="Comix.html">Store</a></li>
+      <li><a href="Library.html">Library</a></li>
+      <li><a href="genre.html">Genres</a></li>
+      <li><a href="popular.html">Popular</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="cart.html" class="cart-icon">🛒 Cart <span id="cartCount">0</span></a></li>
+      <li><a href="#" id="loginBtn">Login</a></li>
+      <li><a href="#" id="signupBtn">Sign Up</a></li>
+    </ul>
+    <div id="userDisplay" style="display:none; font-weight:600; color:#00ffae;"></div>
+    <a href="account.html" id="accountIcon" style="display:none; font-size: 24px; margin-left: 15px; margin-right: 15px; text-decoration: none;">👤</a>
+    <div id="profilePictureNav" style="display:none; margin-left: 15px;">
+      <img id="navProfilePicture" src="" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 2px solid #00ffae; object-fit: cover;">
+    </div>
+    <button id="logoutBtn" style="display:none; margin-left:15px; padding:8px 14px; border:none; border-radius:6px; background:#00ffae; color:black; font-weight:600; cursor:pointer;">Logout</button>
+  </nav>
+
+  <!-- PAGE TITLE -->
+  <section class="page-title" style="background: linear-gradient(to right, rgba(15,15,15,0.7), rgba(24,24,24,0.7)), url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1200'); background-size: cover; background-position: center; padding: 60px; text-align: center;">
+    <h1 style="font-size: 48px; color: #00ffae;">My Profile</h1>
+  </section>
+
+  <!-- PROFILE CONTENT -->
+  <div class="profile-container">
+    <button class="back-btn" onclick="window.location.href='Comix.html'">← Back to Store</button>
+    
+    <!-- PROFILE HEADER -->
+    <div class="profile-header">
+      <div class="profile-picture-section">
+        <img id="profilePictureDisplay" src="https://via.placeholder.com/150?text=No+Picture" alt="Profile Picture">
+        <button class="upload-picture-btn" onclick="document.getElementById('profilePictureInput').click()">Change Picture</button>
+        <input type="file" id="profilePictureInput" accept="image/*">
+      </div>
+      
+      <div class="profile-details">
+        <h1 id="profileUsername"></h1>
+        <div class="detail-row">
+          <strong>Email:</strong>
+          <span id="profileEmail"></span>
+        </div>
+        <div class="detail-row">
+          <strong>Phone:</strong>
+          <span id="profilePhone"></span>
+        </div>
+        <div class="detail-row">
+          <strong>Birth Date:</strong>
+          <span id="profileBirthDate"></span>
+        </div>
+        <div class="detail-row">
+          <strong>Gender:</strong>
+          <span id="profileGender"></span>
+        </div>
+        <div class="detail-row">
+          <strong>Member Since:</strong>
+          <span id="profileMemberSince"></span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ORDER HISTORY -->
+    <h2 class="section-title">Order History</h2>
+    <div id="orderHistoryContainer">
+      <div class="empty-message">No orders yet. Start shopping!</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Comix | My Profile
+  </footer>
+
+  <script src="cart.js"></script>
+  <script src="script.js"></script>
+  <script src="profile.js"></script>
+</body>
+</html>
