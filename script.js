@@ -853,6 +853,14 @@ if (addGenreForm) {
   };
 }
 
+// Scroll to Featured Books section
+function scrollToBooks() {
+  const booksSection = document.getElementById("featured-books");
+  if (booksSection) {
+    booksSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
 // Add Genre button handler
 const addGenreBtn = document.getElementById("addGenreBtn");
 if (addGenreBtn) {
