@@ -241,12 +241,8 @@ function loadLeaderboard() {
 // Load leaderboard when page is ready
 document.addEventListener("DOMContentLoaded", loadLeaderboard);
 
-// ✅ Load books from localStorage and from any available JSON data file
+// ✅ Load books from Store.json only (prioritize JSON over localStorage)
 let books = [];
-
-// Load from localStorage first (synchronously)
-const storedBooks = JSON.parse(localStorage.getItem("books")) || [];
-books = storedBooks;
 
 function fetchBookData() {
   return fetch("books.json")
@@ -256,43 +252,38 @@ function fetchBookData() {
 }
 
 function initializeBooks() {
-  // If we already have books in localStorage, render them immediately
-  if (books.length > 0) {
-    console.log("Books already loaded from localStorage:", books.length);
-    renderStoreBooks();
-    renderLibraryBooks();
-    renderGenreBooks();
-    renderPopularBooks();
-    loadProductDetail();
-  }
-  
-  // Then try to fetch and merge JSON data
+  // Fetch from JSON file (Store.json, Books.json, or books.json)
   fetchBookData()
     .then(data => {
       if (Array.isArray(data) && data.length > 0) {
-        console.log("Loaded additional books from JSON:", data.length);
+        console.log("Loaded books from JSON:", data.length);
         data.forEach(b => {
           if (!b.id) b.id = Date.now() + Math.floor(Math.random() * 1000);
         });
-        books = [...data, ...storedBooks];
+        books = data;
+        // Update localStorage with the JSON data
         localStorage.setItem("books", JSON.stringify(books));
-        // Re-render with merged data
+        // Render with new data
         renderStoreBooks();
         renderLibraryBooks();
         renderGenreBooks();
         renderPopularBooks();
         loadProductDetail();
+      } else {
+        throw new Error("No data in JSON file");
       }
     })
     .catch(err => {
       console.log("Book JSON load failed; using localStorage data only.", err);
-      // Books already set to storedBooks above, re-render to be sure
+      // Fallback to localStorage if JSON fails
+      const storedBooks = JSON.parse(localStorage.getItem("books")) || [];
+      books = storedBooks;
       if (books.length === 0) {
         console.log("No books found anywhere");
-        renderStoreBooks();
       }
-      // Always render genres even if no books
+      renderStoreBooks();
       renderGenreBooks();
+      loadProductDetail();
     });
 }
 
@@ -404,10 +395,10 @@ function renderGenreBooks() {
 
   // Default genres if none stored
   const defaultGenres = [
-    { id: 1, name: "Action", description: "Intense battles and thrilling adventures", image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400" },
-    { id: 2, name: "Fantasy", description: "Magical worlds and epic quests", image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400" },
-    { id: 3, name: "Romance", description: "Heartwarming love stories", image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=400" },
-    { id: 4, name: "Adventure", description: "Epic journeys and discoveries", image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=400" }
+    { id: 1, name: "Action", description: "Intense battles and thrilling adventures", image: "Books Cover/DemonSlayer.jpg" },
+    { id: 2, name: "Fantasy", description: "Magical worlds and epic quests", image: "Books Cover/Fantasy.jpg" },
+    { id: 3, name: "Romance", description: "Heartwarming love stories", image: "Books Cover/Romance.jpg" },
+    { id: 4, name: "Adventure", description: "Epic journeys and discoveries", image: "Books Cover/One Piece.jpg" }
   ];
 
   // Load deleted genre IDs to hide them
@@ -632,9 +623,6 @@ function loadProductDetail() {
     }
   }
 }
-
-// Call on page load
-document.addEventListener("DOMContentLoaded", loadProductDetail);
 
 // --- ADMIN PRODUCT EDITING ---
 document.addEventListener("DOMContentLoaded", () => {

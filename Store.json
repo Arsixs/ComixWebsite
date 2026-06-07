@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "Solo Leveling",
+    "genre": "Action",
+    "price": 299.99,
+    "cover": "Books Cover/Solo.jpg",
+    "description": "Sung Jinwoo was a D-rank hunter with the lowest-tier powers. One day, he got the chance to climb an unusual dungeon. What he finds inside the dungeon changes everything."
+  },
+  {
+    "id": 2,
+    "title": "That Time I Got Reincarnated as a Slime",
+    "genre": "Fantasy",
+    "price": 249.99,
+    "cover": "Books Cover/that-time-i-got-reincarnated-as-a-slime-vol-20-light-novel.jpg",
+    "description": "A Japanese man finds himself reincarnated as a slime in an alternate world. With the power to devour anything and copy its abilities, he aims to create a peaceful world."
+  },
+  {
+    "id": 3,
+    "title": "Demon Slayer",
+    "genre": "Action",
+    "price": 329.99,
+    "cover": "Books Cover/DemonSlayer.jpg",
+    "description": "Tanjiro returns from a charcoal delivery to find his family slaughtered by demons, with only his sister Nezuko surviving but transformed into a demon herself. His journey to find a cure begins."
+  },
+  {
+    "id": 4,
+    "title": "One Piece Volume 62",
+    "genre": "Adventure",
+    "price": 349.99,
+    "cover": "Books Cover/One Piece.jpg",
+    "description": "Join Monkey D. Luffy and his crew as they continue their adventure across the Grand Line in search of the legendary treasure, One Piece."
+  },
+  {
+    "id": 5,
+    "title": "The Beginning After The End - Divergence",
+    "genre": "Fantasy",
+    "price": 279.99,
+    "cover": "Books Cover/The-Beginning-After-The-End-Divergence-Book-7.jpeg",
+    "description": "Arthur Leywin returns to a world he once lived, destined to face extraordinary challenges with his unique abilities."
+  },
+  {
+    "id": 6,
+    "title": "My bias gets on the last train",
+    "genre": "Romance",
+    "price": 259.99,
+    "cover": "Books Cover/Romance.jpg",
+    "description": "A heartwarming tale of love blooming amidst the bustling cityscape."
+  },
+  {
+    "id": 7,
+    "title": "The greteast estate developer",
+    "genre": "Comedy",
+    "price": 199.99,
+    "cover": "Books Cover/Comedy.jpg",
+    "description": "A hilarious collection of comedy stories that will make you laugh out loud."
+  },
+  {
+    "id": 8,
+    "title": "Slice of College Life",
+    "genre": "Slice of Life",
+    "price": 219.99,
+    "cover": "Books Cover/Classroom.png",
+    "description": "Follow the everyday adventures of a group of college friends navigating student life."
+  }
+]
