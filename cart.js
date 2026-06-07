@@ -91,7 +91,7 @@ function renderCartPage() {
       <div class="empty-cart">
         <h2>Your cart is empty</h2>
         <p>Start shopping to add items to your cart.</p>
-        <a href="Comix.html" class="continue-shopping">Continue Shopping</a>
+        <a href="index.html" class="continue-shopping">Continue Shopping</a>
       </div>
     `;
     updateSummary();

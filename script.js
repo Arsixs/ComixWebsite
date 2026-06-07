@@ -56,7 +56,7 @@ if (logoutBtn) {
     const accountIcon = document.getElementById("accountIcon");
     if (accountIcon) accountIcon.style.display = "none";
     alert("You have logged out.");
-    window.location.href = "Comix.html";
+    window.location.href = "index.html";
   };
 }
 

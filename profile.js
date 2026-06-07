@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Redirect if not logged in
   if (!currentUser) {
     alert("Please log in to view your profile.");
-    window.location.href = "Comix.html";
+    window.location.href = "index.html";
     return;
   }
   

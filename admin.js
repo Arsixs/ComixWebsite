@@ -7,7 +7,7 @@ const hero = document.getElementById("hero");
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 if (!currentUser || currentUser.role !== "admin") {
   alert("Access denied. Redirecting to store...");
-  window.location.href = "Comix.html";
+  window.location.href = "index.html";
 } else {
   // Show admin info
   logoutBtn.style.display = "inline-block";
@@ -120,7 +120,7 @@ renderBooks();
 logoutBtn.onclick = () => {
   localStorage.removeItem("currentUser"); // clear session
   alert("You have logged out.");
-  window.location.href = "Comix.html"; // redirect back to store
+  window.location.href = "index.html"; // redirect back to store
 };
 
 //  Load users

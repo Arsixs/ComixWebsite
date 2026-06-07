@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manhwa Library Store</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="Comixstyle.css">
+  
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Comix</div>
+  
+   <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <ul id="navLinks">
+    <li id="adminLink" style="display:none;"><a href="admin.html">Admin Dashboard</a></li>
+    <li><a href="index.html">Store</a></li>
+    <li><a href="Library.html">Library</a></li> 
+    <li><a href="genre.html">Genres</a></li>
+    <li><a href="popular.html">Popular</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="cart.html" class="cart-icon">🛒 Cart <span id="cartCount">0</span></a></li>
+    <li><a href="#" id="loginBtn">Login</a></li>
+    <li><a href="#" id="signupBtn">Sign Up</a></li>
+  </ul>
+  <div id="userDisplay" style="display:none; font-weight:600; color:#00ffae;"></div>
+  <a href="account.html" id="accountIcon" style="display:none; font-size: 24px; margin-left: 15px; margin-right: 15px; text-decoration: none;">👤</a>
+  <button id="logoutBtn" style="display:none; margin-left:15px; padding:8px 14px; border:none; border-radius:6px; background:#00ffae; color:black; font-weight:600; cursor:pointer;">Logout</button>
+</nav>
+
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="loginUsername" placeholder="Username" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div class="modal" id="signupModal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Create New Account</h2>
+    <form id="signupForm">
+      <!-- ✅ Username field -->
+      <input type="text" id="username" placeholder="Username*" required>
+
+      <input type="text" id="firstName" placeholder="First Name*" required>
+      <input type="text" id="lastName" placeholder="Last Name*" required>
+
+      <!-- Birth Date restricted to 2026 -->
+      <input type="date" id="birthDate" required 
+             min="1900-01-01" 
+             max="2026-12-31">
+
+      <select id="gender">
+        <option value="">-- Select Gender (optional) --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <!-- Phone number limited to 11 digits -->
+      <input type="tel" id="phone" placeholder="Phone Number*" maxlength="11" required>
+
+      <input type="email" id="email" placeholder="Email*" required>
+      <input type="password" id="password" placeholder="Password*" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password*" required>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+  <div class="hero-text">
+    <h1>Read Your Favorite <span>Manhwa</span> Anytime</h1>
+    <p>Explore action, fantasy, romance, and adventure from the best manhwa/manga collections online.</p>
+    <div class="hero-btn">
+      <button class="btn btn-primary">Buy Now</button>
+      <button class="btn btn-secondary">Explore</button>
+    </div>
+  </div>
+</section>
+
+
+  <!-- SEARCH -->
+  <section class="search-section">
+    <input type="text" class="search-box" placeholder="Search manhwa...">
+  </section>
+
+  <!-- BOOKS -->
+  <section class="books">
+    <h2 class="section-title">Featured Manhwa</h2>
+    <div class="book-grid">
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Comix | Library Store Website
+  </footer>
+
+<script src="cart.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
