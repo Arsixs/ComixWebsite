@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Comix</div>
+  <ul id="navLinks">
+    <li><a href="admin.html">Admin Dashboard</a></li>
+    <li><a href="Comix.html">Store</a></li>
+    <li><a href="Library.html">Library</a></li> 
+    <li><a href="genre.html">Genres</a></li>
+    <li><a href="popular.html">Popular</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="cart.html" class="cart-icon">🛒 Cart <span id="cartCount">0</span></a></li>
+  </ul>
+  <div id="userDisplay" style="display:none; font-weight:600; color:#00ffae;"></div>
+  <a href="account.html" id="accountIcon" style="display:none; font-size: 24px; margin-left: 15px; margin-right: 15px; text-decoration: none;">👤</a>
+  <button id="logoutBtn" style="display:none; margin-left:15px; padding:8px 14px; border:none; border-radius:6px; background:#00ffae; color:black; font-weight:600; cursor:pointer;">Logout</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-text">
+    <h1>Admin <span>Dashboard</span></h1>
+    <p>Manage books, users, and orders here.</p>
+  </div>
+</section>
+
+<!-- ADMIN CONTENT -->
+<section class="admin-dashboard">
+
+  <!-- Manage Books -->
+  <h2>Manage Books</h2>
+  <form id="addBookForm">
+    <input type="text" id="bookTitle" placeholder="Book Title" required>
+    <input type="text" id="bookGenre" placeholder="Genre" required>
+    <input type="number" id="bookPrice" placeholder="Price" required>
+    <input type="file" id="bookCover" accept="image/*" placeholder="Select Cover Image" required>
+    <div id="coverPreview" style="margin-top: 10px; display: none;">
+      <img id="previewImage" alt="Cover Preview" style="width: 100px; height: 140px; object-fit: cover; border-radius: 5px; border: 2px solid #00ffae;">
+    </div>
+    <textarea id="bookDescription" placeholder="Description"></textarea>
+    <button type="submit">Add Book</button>
+  </form>
+  <div id="bookManager"></div>
+
+  <!-- Manage Users -->
+  <h2>Manage Users</h2>
+  <div id="userManager"></div>
+
+  <!-- Manage Orders -->
+  <h2>Orders</h2>
+  <div id="orderManager"></div>
+
+  <!-- Reports -->
+  <h2>Reports</h2>
+  <div id="reportSection">
+    <p>Total Sales: <span id="totalSales">0</span></p>
+    <p>Top Selling Book: <span id="topBook">None</span></p>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Comix | Admin Dashboard
+</footer>
+
+<!-- Admin Script -->
+<script src="admin.js" defer></script>
+</body>
+</html>

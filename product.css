@@ -1,0 +1,283 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* PAGE BACKGROUND */
+body {
+  background: linear-gradient(135deg, #021b12, #000000);
+  min-height: 100vh;
+  color: white;
+}
+
+/* MAIN SECTION */
+.product-detail {
+  padding: 60px 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* PRODUCT CARD */
+.product-card {
+  width: 100%;
+  max-width: 1300px;
+  background: #111;
+  border-radius: 25px;
+  padding: 50px;
+  display: flex;
+  gap: 60px;
+  box-shadow:
+    0 0 25px rgba(0, 255, 150, 0.15),
+    0 10px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0,255,140,0.15);
+}
+
+/* LEFT SIDE */
+.product-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* BOOK COVER */
+.product-cover {
+  width: 100%;
+  max-width: 400px;
+  height: 560px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #0f0f0f;
+  padding: 10px;
+  border: 2px solid #1eff9c;
+  box-shadow:
+    0 0 20px rgba(30,255,156,0.3),
+    0 0 40px rgba(30,255,156,0.15);
+  transition: 0.3s ease;
+}
+
+.product-cover:hover {
+  transform: scale(1.02);
+}
+
+/* RIGHT SIDE */
+.product-info {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* TITLE */
+.product-info h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+/* PRICE */
+.product-info .price {
+  font-size: 42px;
+  font-weight: bold;
+  color: #1eff9c;
+  margin-bottom: 25px;
+}
+
+/* DESCRIPTION */
+#productDescription {
+  color: #cfcfcf;
+  line-height: 1.8;
+  font-size: 17px;
+  margin-bottom: 30px;
+}
+
+/* QUANTITY */
+label {
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #999;
+  margin-bottom: 10px;
+  display: block;
+  text-transform: uppercase;
+}
+
+#quantity {
+  width: 90px;
+  padding: 12px;
+  background: #181818;
+  border: 1px solid #333;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+/* BUTTONS */
+.cart-btn,
+.buy-btn {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-bottom: 15px;
+}
+
+/* ADD TO CART */
+.cart-btn {
+  background: #1eff9c;
+  color: black;
+}
+
+.cart-btn:hover {
+  background: #00d97d;
+  transform: translateY(-2px);
+}
+
+/* CHECKOUT */
+.buy-btn {
+  background: transparent;
+  border: 2px solid #1eff9c;
+  color: #1eff9c;
+}
+
+.buy-btn:hover {
+  background: #1eff9c;
+  color: black;
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 950px) {
+
+  .product-card {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .product-cover {
+    max-width: 320px;
+    height: 450px;
+  }
+
+  .product-info h2 {
+    font-size: 34px;
+  }
+
+  .product-info .price {
+    font-size: 32px;
+  }
+}
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: #121212;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #00ffae;
+}
+
+nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00ffae;
+}
+
+/* cart */
+.cart-icon {
+  position: relative;
+  font-weight: 600;
+  color: #00ffae;
+}
+
+.cart-icon span {
+  background: #00ffae;
+  color: black;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 50%;
+  padding: 2px 6px;
+  position: absolute;
+  top: -8px;
+  right: -15px;
+}
+
+.cart-dropdown {
+  position: absolute;
+  top: 70px; /* adjust based on navbar height */
+  right: 20px;
+  width: 280px;
+  background: #111;
+  border: 1px solid #00ffae;
+  border-radius: 10px;
+  padding: 15px;
+  display: none; /* hidden by default */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  z-index: 1000;
+}
+
+.cart-dropdown h4 {
+  margin-bottom: 10px;
+  color: #00ffae;
+}
+
+.cart-dropdown ul {
+  list-style: none;
+  max-height: 150px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-dropdown ul li {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.cart-total {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #00ffae;
+}
+
+.checkout-btn {
+  display: block;
+  margin-top: 12px;
+  padding: 10px;
+  text-align: center;
+  background: #00ffae;
+  color: black;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+}
+

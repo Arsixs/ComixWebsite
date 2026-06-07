@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Detail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Comixstyle.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">Comix</div>
+
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul id="navLinks">
+      <li id="adminLink" style="display:none;"><a href="admin.html">Admin Dashboard</a></li>
+      <li><a href="Comix.html">Store</a></li>
+      <li><a href="Library.html">Library</a></li> 
+      <li><a href="genre.html">Genres</a></li>
+      <li><a href="popular.html">Popular</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="cart.html" class="cart-icon">🛒 Cart <span id="cartCount">0</span></a></li>
+      <li><a href="#" id="loginBtn">Login</a></li>
+      <li><a href="#" id="signupBtn">Sign Up</a></li>
+    </ul>
+    <div id="userDisplay" style="display:none; font-weight:600; color:#00ffae;"></div>
+    <a href="account.html" id="accountIcon" style="display:none; font-size: 24px; margin-left: 15px; margin-right: 15px; text-decoration: none;">👤</a>
+    <button id="logoutBtn" style="display:none; margin-left:15px; padding:8px 14px; border:none; border-radius:6px; background:#00ffae; color:black; font-weight:600; cursor:pointer;">Logout</button>
+  </nav>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Create New Account</h2>
+      <form id="signupForm">
+        <input type="text" id="username" placeholder="Username*" required>
+        <input type="text" id="firstName" placeholder="First Name*" required>
+        <input type="text" id="lastName" placeholder="Last Name*" required>
+        <input type="date" id="birthDate" required min="1900-01-01" max="2026-12-31">
+        <select id="gender">
+          <option value="">-- Select Gender (optional) --</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="tel" id="phone" placeholder="Phone Number*" maxlength="11" required>
+        <input type="email" id="email" placeholder="Email*" required>
+        <input type="password" id="password" placeholder="Password*" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password*" required>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="product-detail">
+    <div class="product-card" style="position: relative;">
+      <!-- ADMIN EDIT BUTTON (Upper Right) -->
+      <div id="adminEditSection" style="display:none; position: absolute; top: 15px; right: 15px; z-index: 10;">
+        <button id="editProductBtn" class="admin-edit-btn" style="padding: 8px 16px; background: #00ffae; color: black; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">✏️ Edit</button>
+      </div>
+
+      <!-- LEFT SIDE -->
+      <div class="product-left">
+        <img id="productCover" class="product-cover" alt="Book Cover">
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="product-info">
+        <p class="genre" id="productGenre"></p>
+        <h2 id="productTitle"></h2>
+        <p class="price" id="productPrice"></p>
+
+        <div class="description-box">
+          <h3>Description</h3>
+          <p id="productDescription"></p>
+        </div>
+
+        <div class="quantity-box">
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" value="1" min="1">
+        </div>
+
+        <!-- EDIT FORM (HIDDEN BY DEFAULT) -->
+        <div id="editForm" style="display:none; margin: 20px 0; padding: 15px; background: #1a1a1a; border-radius: 6px;">
+          <h3 style="color: #00ffae; margin-bottom: 15px;">Edit Product Details</h3>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div>
+              <label style="display: block; margin-bottom: 5px; color: #00ffae;">Genre</label>
+              <input type="text" id="editGenre" placeholder="Enter genre" style="width: 100%; padding: 8px; background: #2a2a2a; color: white; border: 1px solid #00ffae; border-radius: 4px;">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 5px; color: #00ffae;">Price (₱)</label>
+              <input type="number" id="editPrice" placeholder="Enter price" step="0.01" min="0" style="width: 100%; padding: 8px; background: #2a2a2a; color: white; border: 1px solid #00ffae; border-radius: 4px;">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 5px; color: #00ffae;">Description</label>
+              <textarea id="editDescription" placeholder="Enter description" style="width: 100%; padding: 8px; background: #2a2a2a; color: white; border: 1px solid #00ffae; border-radius: 4px; min-height: 100px; resize: vertical;"></textarea>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button id="saveProductBtn" style="flex: 1; padding: 8px; background: #00ffae; color: black; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Save Changes</button>
+              <button id="cancelEditBtn" style="flex: 1; padding: 8px; background: #555; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CART DROPDOWN -->
+        <div id="cartDropdown" class="cart-dropdown">
+          <h4>Your Cart</h4>
+          <ul id="cartItems"></ul>
+          <div class="cart-total">
+            <span id="cartTotal">Total: ₱0</span>
+          </div>
+          <a href="cart.html" class="checkout-btn">Go to Checkout</a>
+        </div>
+
+        <div class="product-actions">
+          <button id="addCartBtn" class="cart-btn">Add to Cart</button>
+          <button class="buy-btn">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Comix | Product Details
+  </footer>
+
+<script src="cart.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

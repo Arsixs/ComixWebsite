@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account - Comix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Comixstyle.css">
+  <style>
+    .account-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    .account-header {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+    
+    .account-picture-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .account-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #00ffae;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      border: 3px solid #00ffae;
+    }
+    
+    #profilePictureDisplay {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00ffae;
+      background: #333;
+      display: none;
+    }
+    
+    .upload-picture-btn {
+      padding: 10px 20px;
+      background: #00ffae;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .upload-picture-btn:hover {
+      background: #00ddaa;
+    }
+    
+    #profilePictureInput {
+      display: none;
+    }
+    
+    .account-details {
+      flex: 1;
+    }
+    
+    .account-details h1 {
+      color: #00ffae;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #333;
+      color: #ccc;
+    }
+    
+    .detail-row strong {
+      color: #00ffae;
+    }
+    
+    .section-title {
+      color: #00ffae;
+      font-size: 22px;
+      margin: 40px 0 20px 0;
+      font-weight: 600;
+    }
+    
+    .order-history {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #00ffae;
+    }
+    
+    .order-card {
+      background: #2a2a2a;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #333;
+    }
+    
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #444;
+    }
+    
+    .order-id {
+      color: #00ffae;
+      font-weight: 600;
+    }
+    
+    .order-date {
+      color: #888;
+      font-size: 14px;
+    }
+    
+    .order-status {
+      padding: 6px 12px;
+      background: #00ffae;
+      color: black;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    
+    .order-items {
+      margin-bottom: 15px;
+    }
+    
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      color: #ccc;
+      font-size: 14px;
+    }
+    
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 15px;
+      border-top: 1px solid #444;
+      color: #00ffae;
+      font-weight: 600;
+    }
+    
+    .empty-message {
+      text-align: center;
+      padding: 40px 20px;
+      color: #888;
+    }
+    
+    .login-message {
+      background: #1a1a1a;
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      border-left: 4px solid #00ffae;
+    }
+    
+    .login-message h2 {
+      color: #00ffae;
+      margin-bottom: 20px;
+    }
+    
+    .login-message button {
+      padding: 12px 30px;
+      background: #00ffae;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    
+    .login-message button:hover {
+      background: #00ddaa;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">Comix</div>
+    <ul id="navLinks">
+      <li id="adminLink" style="display:none;"><a href="admin.html">Admin Dashboard</a></li>
+      <li><a href="Comix.html">Store</a></li>
+      <li><a href="Library.html">Library</a></li>
+      <li><a href="genre.html">Genres</a></li>
+      <li><a href="popular.html">Popular</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="cart.html" class="cart-icon">🛒 Cart <span id="cartCount">0</span></a></li>
+      <li><a href="#" id="loginBtn">Login</a></li>
+      <li><a href="#" id="signupBtn">Sign Up</a></li>
+    </ul>
+    <div id="userDisplay" style="display:none; font-weight:600; color:#00ffae;"></div>
+    <a href="account.html" id="accountIcon" style="display:none; font-size: 24px; margin-left: 15px; margin-right: 15px; text-decoration: none;">👤</a>
+    <button id="logoutBtn" style="display:none; margin-left:15px; padding:8px 14px; border:none; border-radius:6px; background:#00ffae; color:black; font-weight:600; cursor:pointer;">Logout</button>
+  </nav>
+
+  <!-- PAGE TITLE -->
+  <section class="page-title" style="background: linear-gradient(to right, rgba(15,15,15,0.7), rgba(24,24,24,0.7)), url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1200'); background-size: cover; background-position: center; padding: 60px; text-align: center;">
+    <h1 style="font-size: 48px; color: #00ffae;">My Account</h1>
+  </section>
+
+  <!-- ACCOUNT CONTENT -->
+  <div class="account-container" id="accountContent" style="display:none;">
+    <!-- ACCOUNT HEADER -->
+    <div class="account-header">
+      <div class="account-picture-section">
+        <div class="account-icon">👤</div>
+        <img id="profilePictureDisplay" src="" alt="Profile">
+        <button class="upload-picture-btn" onclick="document.getElementById('profilePictureInput').click()">Upload Photo</button>
+        <input type="file" id="profilePictureInput" accept="image/*">
+      </div>
+      
+      <div class="account-details">
+        <h1 id="accountUsername">User Account</h1>
+        <div class="detail-row">
+          <strong>Email:</strong>
+          <span id="accountEmail">-</span>
+        </div>
+        <div class="detail-row">
+          <strong>Username:</strong>
+          <span id="accountUsernameDisplay">-</span>
+        </div>
+        <div class="detail-row">
+          <strong>Phone:</strong>
+          <span id="accountPhone">-</span>
+        </div>
+        <div class="detail-row">
+          <strong>Gender:</strong>
+          <span id="accountGender">-</span>
+        </div>
+        <div class="detail-row">
+          <strong>Date of Birth:</strong>
+          <span id="accountBirthDate">-</span>
+        </div>
+        <div class="detail-row">
+          <strong>Member Since:</strong>
+          <span id="accountMemberSince">-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER HISTORY -->
+    <h2 class="section-title">📦 Order History</h2>
+    <div class="order-history" id="orderHistoryContainer">
+      <div class="empty-message">No orders yet</div>
+    </div>
+
+    <!-- TOTAL STATS -->
+    <h2 class="section-title">📊 Statistics</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px;">
+      <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; border-left: 4px solid #00ffae; text-align: center;">
+        <div style="color: #888; font-size: 14px; margin-bottom: 10px;">Total Orders</div>
+        <div style="color: #00ffae; font-size: 28px; font-weight: 600;" id="totalOrders">0</div>
+      </div>
+      <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; border-left: 4px solid #00ffae; text-align: center;">
+        <div style="color: #888; font-size: 14px; margin-bottom: 10px;">Books Purchased</div>
+        <div style="color: #00ffae; font-size: 28px; font-weight: 600;" id="totalBooks">0</div>
+      </div>
+      <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; border-left: 4px solid #00ffae; text-align: center;">
+        <div style="color: #888; font-size: 14px; margin-bottom: 10px;">Total Spent</div>
+        <div style="color: #00ffae; font-size: 28px; font-weight: 600;" id="totalSpent">₱0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN MESSAGE -->
+  <div id="loginMessage" class="login-message">
+    <h2>Please Log In to View Your Account</h2>
+    <p style="color: #ccc; margin-bottom: 20px;">You need to be logged in to access your account details and order history.</p>
+    <button onclick="document.getElementById('loginModal').style.display = 'flex'">Login Now</button>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Sign Up</h2>
+      <form id="signupForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="phone" placeholder="Phone (11 digits)" required>
+        <input type="date" id="birthDate" placeholder="Date of Birth" required>
+        <select id="gender" required>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="password" id="password" placeholder="Password (min 6 chars)" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 MANHWA HUB | Library Store Website
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Account page specific functionality
+    function loadAccountPage() {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      
+      if (!currentUser) {
+        document.getElementById("accountContent").style.display = "none";
+        document.getElementById("loginMessage").style.display = "block";
+        return;
+      }
+      
+      document.getElementById("accountContent").style.display = "block";
+      document.getElementById("loginMessage").style.display = "none";
+      
+      // Load user details
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.username === currentUser.username);
+      
+      if (user) {
+        document.getElementById("accountUsername").textContent = user.username;
+        document.getElementById("accountUsernameDisplay").textContent = user.username;
+        document.getElementById("accountEmail").textContent = user.email || "-";
+        document.getElementById("accountPhone").textContent = user.phone || "-";
+        document.getElementById("accountGender").textContent = user.gender || "-";
+        document.getElementById("accountBirthDate").textContent = user.birthDate || "-";
+        document.getElementById("accountMemberSince").textContent = user.memberSince || new Date().toLocaleDateString();
+        
+        if (user.profilePicture) {
+          document.getElementById("profilePictureDisplay").src = user.profilePicture;
+          document.getElementById("profilePictureDisplay").style.display = "block";
+          document.querySelector(".account-icon").style.display = "none";
+        }
+      }
+      
+      // Load orders
+      loadOrderHistory();
+      
+      // Handle profile picture upload
+      document.getElementById("profilePictureInput").addEventListener("change", function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const profilePicture = event.target.result;
+            document.getElementById("profilePictureDisplay").src = profilePicture;
+            document.getElementById("profilePictureDisplay").style.display = "block";
+            document.querySelector(".account-icon").style.display = "none";
+            
+            // Save to user
+            if (user) {
+              user.profilePicture = profilePicture;
+              const userIndex = users.findIndex(u => u.username === currentUser.username);
+              if (userIndex !== -1) {
+                users[userIndex] = user;
+                localStorage.setItem("users", JSON.stringify(users));
+              }
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+    
+    function loadOrderHistory() {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const allOrders = JSON.parse(localStorage.getItem("orders")) || [];
+      const userOrders = allOrders.filter(order => order.user === currentUser.username);
+      
+      const container = document.getElementById("orderHistoryContainer");
+      let totalBooks = 0;
+      let totalSpent = 0;
+      
+      if (userOrders.length === 0) {
+        container.innerHTML = '<div class="empty-message">No orders yet. Start shopping!</div>';
+      } else {
+        container.innerHTML = userOrders.map((order, index) => {
+          totalBooks += order.items ? order.items.length : 0;
+          totalSpent += order.total || 0;
+          
+          const itemsHTML = (order.items || []).map(item => 
+            `<div class="order-item">
+              <span>${item.title} (x${item.quantity})</span>
+              <span>₱${(item.price * item.quantity).toFixed(2)}</span>
+            </div>`
+          ).join("");
+          
+          return `
+            <div class="order-card">
+              <div class="order-header">
+                <div>
+                  <div class="order-id">Order #${order.id || index + 1}</div>
+                  <div class="order-date">${new Date(order.date).toLocaleDateString()}</div>
+                </div>
+                <span class="order-status">${order.status || "Completed"}</span>
+              </div>
+              <div class="order-items">
+                ${itemsHTML}
+              </div>
+              <div class="order-total">
+                <span>Total:</span>
+                <span>₱${(order.total || 0).toFixed(2)}</span>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+      
+      document.getElementById("totalOrders").textContent = userOrders.length;
+      document.getElementById("totalBooks").textContent = totalBooks;
+      document.getElementById("totalSpent").textContent = "₱" + totalSpent.toFixed(2);
+    }
+    
+    // Load account page on page load
+    document.addEventListener("DOMContentLoaded", loadAccountPage);
+  </script>
+</body>
+</html>
