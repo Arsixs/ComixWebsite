@@ -56,7 +56,7 @@ if (logoutBtn) {
     const accountIcon = document.getElementById("accountIcon");
     if (accountIcon) accountIcon.style.display = "none";
     alert("You have logged out.");
-    window.location.href = "Comix.html";
+    window.location.href = "index.html";
   };
 }
 
@@ -851,6 +851,14 @@ if (addGenreForm) {
       reader.readAsDataURL(file);
     }
   };
+}
+
+// Scroll to Featured Books section
+function scrollToBooks() {
+  const booksSection = document.getElementById("featured-books");
+  if (booksSection) {
+    booksSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 // Add Genre button handler

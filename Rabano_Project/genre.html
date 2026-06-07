@@ -19,7 +19,7 @@
     </div>
     <ul id="navLinks">
       <li id="adminLink" style="display:none;"><a href="admin.html">Admin Dashboard</a></li>
-      <li><a href="Comix.html">Store</a></li>
+      <li><a href="index.html">Store</a></li>
       <li><a href="Library.html">Library</a></li>
       <li><a href="genre.html">Genres</a></li>
       <li><a href="popular.html">Popular</a></li>
@@ -32,6 +32,44 @@
     <a href="account.html" id="accountIcon" style="display:none; font-size: 24px; margin-left: 15px; margin-right: 15px; text-decoration: none;">👤</a>
     <button id="logoutBtn" style="display:none; margin-left:15px; padding:8px 14px; border:none; border-radius:6px; background:#00ffae; color:black; font-weight:600; cursor:pointer;">Logout</button>
   </nav>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Create New Account</h2>
+      <form id="signupForm">
+        <input type="text" id="username" placeholder="Username*" required>
+        <input type="text" id="firstName" placeholder="First Name*" required>
+        <input type="text" id="lastName" placeholder="Last Name*" required>
+        <input type="date" id="birthDate" required min="1900-01-01" max="2026-12-31">
+        <select id="gender">
+          <option value="">-- Select Gender (optional) --</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="tel" id="phone" placeholder="Phone Number*" maxlength="11" required>
+        <input type="email" id="email" placeholder="Email*" required>
+        <input type="password" id="password" placeholder="Password*" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password*" required>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
 
   <!-- PAGE TITLE -->
   <section class="page-title" style="background: linear-gradient(to right, rgba(15,15,15,0.7), rgba(24,24,24,0.7)), url('https://jw-webmagazine.com/wp-content/uploads/2019/07/jw-5d1b5650099dd7.66429803.jpeg'); background-size: cover; background-position: center; padding: 60px; text-align: center;">
